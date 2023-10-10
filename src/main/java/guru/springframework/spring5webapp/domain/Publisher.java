@@ -1,9 +1,14 @@
 package guru.springframework.spring5webapp.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Publisher {
@@ -18,6 +23,10 @@ public class Publisher {
     private String state;
     private String zip;
 
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
+
     // constructors
     public Publisher(String name, String addressLine1, String city, String state, String zip) {
         this.name = name;
@@ -31,7 +40,6 @@ public class Publisher {
     };
 
     // equals() hashCode() and toString()
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -56,7 +64,6 @@ public class Publisher {
     }
 
     // getters and setters
-
     public Long getId() {
         return this.id;
     }
@@ -103,6 +110,14 @@ public class Publisher {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
 }

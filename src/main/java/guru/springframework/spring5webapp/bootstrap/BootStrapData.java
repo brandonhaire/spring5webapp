@@ -45,6 +45,10 @@ public class BootStrapData implements CommandLineRunner {
         ddd.getAuthors()
            .add(eric);
 
+        ddd.setPublisher(publisher);
+        publisher.getBooks()
+                 .add(ddd);
+
         authorRepository.save(eric);
         bookRepository.save(ddd);
 
@@ -55,10 +59,17 @@ public class BootStrapData implements CommandLineRunner {
         noEJB.getAuthors()
              .add(rod);
 
+        noEJB.setPublisher(publisher);
+        publisher.getBooks()
+                 .add(noEJB);
+
         authorRepository.save(rod);
         bookRepository.save(noEJB);
+        publisherRepository.save(publisher);
 
         System.out.println("Number of Books: " + bookRepository.count());
+        System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
+
     }
 
 }
