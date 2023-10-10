@@ -1,5 +1,6 @@
 package guru.springframework.spring5webapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -12,6 +13,14 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Book {
+
+    public Book() {
+    }
+
+    public Book(String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,17 +43,7 @@ public class Book {
                     name = "author_id"
             )
     )
-    private Set<Author> authors;
-
-    public Book() {
-    }
-
-    public Book(Long id, String title, String isbn, Set<Author> authors) {
-        this.id = id;
-        this.title = title;
-        this.isbn = isbn;
-        this.authors = authors;
-    }
+    private Set<Author> authors = new HashSet<>();
 
     public Book id(Long id) {
         setId(id);
@@ -87,12 +86,6 @@ public class Book {
     public String toString() {
         return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", isbn='" + getIsbn() + "'"
                 + ", authors='" + getAuthors() + "'" + "}";
-    }
-
-    public Book(String title, String isbn, Set<Author> authors) {
-        this.title = title;
-        this.isbn = isbn;
-        this.authors = authors;
     }
 
     public Set<Author> getAuthors() {
