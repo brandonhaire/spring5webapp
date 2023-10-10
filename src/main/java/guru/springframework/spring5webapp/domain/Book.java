@@ -63,7 +63,7 @@ public class Book {
     @Override
     public String toString() {
         return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", isbn='" + getIsbn() + "'"
-                + ", authors='" + getAuthors() + "'" + "}";
+                +  "'" + "}";
     }
 
     // getters and setters
