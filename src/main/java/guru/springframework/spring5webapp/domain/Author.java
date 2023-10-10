@@ -12,6 +12,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+    private String lastName;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books = new HashSet<>();
+
+    // constructors
     public Author() {
     }
 
@@ -20,26 +31,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public Author id(Long id) {
-        setId(id);
-        return this;
-    }
-
-    public Author firstName(String firstName) {
-        setFirstName(firstName);
-        return this;
-    }
-
-    public Author lastName(String lastName) {
-        setLastName(lastName);
-        return this;
-    }
-
-    public Author books(Set<Book> books) {
-        setBooks(books);
-        return this;
-    }
-
+    // equals() hashCode() and toString()
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -63,24 +55,7 @@ public class Author {
                 + "'" + ", books='" + getBooks() + "'" + "}";
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    private String firstName;
-    private String lastName;
-
-    @ManyToMany(mappedBy = "authors")
-    private Set<Book> books = new HashSet<>();
-
+    // getters and setters
     public String getFirstName() {
         return this.firstName;
     }
@@ -105,4 +80,11 @@ public class Author {
         this.books = books;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

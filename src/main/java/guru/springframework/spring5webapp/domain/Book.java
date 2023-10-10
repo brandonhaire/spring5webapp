@@ -14,25 +14,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Book {
 
-    public Book() {
-    }
-
-    public Book(String title, String isbn) {
-        this.title = title;
-        this.isbn = isbn;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     private String title;
     private String isbn;
@@ -45,26 +29,16 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    public Book id(Long id) {
-        setId(id);
-        return this;
+    // constructors
+    public Book() {
     }
 
-    public Book title(String title) {
-        setTitle(title);
-        return this;
+    public Book(String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
     }
 
-    public Book isbn(String isbn) {
-        setIsbn(isbn);
-        return this;
-    }
-
-    public Book authors(Set<Author> authors) {
-        setAuthors(authors);
-        return this;
-    }
-
+    // equals() hashCode() and toString()
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -88,6 +62,7 @@ public class Book {
                 + ", authors='" + getAuthors() + "'" + "}";
     }
 
+    // getters and setters
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -110,5 +85,13 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
