@@ -8,14 +8,12 @@ import guru.springframework.spring5webapp.repositories.BookRepository;
 
 @Controller
 public class BookController {
-    
-    private final BookRepository bookRepository;
 
+    private final BookRepository bookRepository;
 
     public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-
 
     @RequestMapping("/books")
     public String getBooks(Model model) {
